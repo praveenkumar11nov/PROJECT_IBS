@@ -1,0 +1,1197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+	
+	
+	<http pattern="/resources/**" security="none"/> 
+	<http pattern="/cookie/getuserimage/" security="none"/>
+	 
+	<http pattern="/getUserId" security="none"/>	
+	<http pattern="/recoverPassword" security="none"/>	
+
+	<http pattern="/logininvalid" security="none"/>			
+	<http pattern="/home?language=en" security="none"/>	
+	
+	
+	<!-- <http pattern="/login" security="none"/>
+	<http pattern="/errorpage404" security="none"/> -->
+	
+		
+	
+	<http access-decision-manager-ref="accessDecisionManager" auto-config="true" disable-url-rewriting="true" access-denied-page="/accessDenied">
+		
+		<intercept-url pattern="/home" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/recoverMenu" access="ROLE_ADMIN"></intercept-url>	
+			
+		
+		<!-- **************************** User Management ************************* -->
+		
+		<intercept-url pattern="/usermanagement" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/getMenu" access="ROLE_ADMIN"></intercept-url>	
+		
+		<intercept-url pattern="/users" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userManagement/users/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userManagement/users/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userManagement/users/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userManagement/users/resetPasswordButton" access="ROLE_ADMIN"></intercept-url>
+		
+		<intercept-url pattern="/userroles" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userRoles/assignButton" access="ROLE_ADMIN"></intercept-url> 
+		<intercept-url pattern="/userRoles/unassignButton" access="ROLE_ADMIN"></intercept-url>
+					
+		<intercept-url pattern="/usergroups" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userGroups/assignButton" access="ROLE_ADMIN"></intercept-url> 
+		<intercept-url pattern="/userGroups/unassignButton" access="ROLE_ADMIN"></intercept-url>
+		
+		<intercept-url pattern="/role" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userManagement/roles/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userManagement/roles/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userManagement/roles/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		
+		<intercept-url pattern="/groups" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userManagement/groups/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userManagement/groups/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userManagement/groups/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		
+		<intercept-url pattern="/department" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userManagement/department/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userManagement/department/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userManagement/department/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		
+		<intercept-url pattern="/designation" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userManagement/designation/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userManagement/designation/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/userManagement/designation/deleteButton" access="ROLE_ADMIN"></intercept-url>		
+		
+		<intercept-url pattern="/parkingslotsallocationdetails/destroy" access="ROLE_ADMIN"></intercept-url>
+		
+		<!-- **************************** COM Management ************************* -->
+		
+	   <intercept-url pattern= "/commanagement/project/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/project/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/project/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   
+	   <intercept-url pattern="/commanagement/block/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/block/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/block/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   
+	   <intercept-url pattern="/commanagement/property/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/property/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/property/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   
+	   <intercept-url pattern="/commanagement/owner/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/owner/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/owner/deleteButton" access="ROLE_ADMIN"></intercept-url>		   
+	   <intercept-url pattern="/commanagement/owneraddress/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/owneraddress/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/owneraddress/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/owner/address/delete" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/ownercontact/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/ownercontact/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/owner/contact/delete" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/ownerproperty/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/ownerproperty/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/ownerproperty/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/owneracesscards/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/owneracesscards/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/owneracesscards/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern= "/commanagement/owneracesscardspermission/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/owneracesscardspermission/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/owneracesscardspermission/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/owneraddressdocuments/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/owneraddressdocuments/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/owneraddressdocuments/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	  
+	  <intercept-url pattern= "/commanagement/owneraddressdocuments/viewButton" access="ROLE_ADMIN"></intercept-url>
+	  <intercept-url pattern= "/commanagement/owneraddressdocuments/selectFileButton" access="ROLE_ADMIN"></intercept-url>
+	  
+	   <intercept-url pattern="/commanagement/owneraddressmedicalemergency/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/owneraddressmedicalemergency/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/owneraddressmedicalemergency/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/ownerarms/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/ownerarms/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/ownerarms/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   
+	    <intercept-url pattern="/comtenants" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenants/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern= "/commanagement/tenants/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern= "/commanagement/tenants/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	    <intercept-url pattern= "/commanagement/tenants/statusButton" access="ROLE_ADMIN"></intercept-url>
+	    
+	   <intercept-url pattern="/commanagement/tenantsaddress/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenantsaddress/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenantsaddress/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/tenant/address/delete" access="ROLE_ADMIN"></intercept-url>
+	   
+	   <intercept-url pattern="/commanagement/tenantscontact/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenantscontact/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenantscontact/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	    <intercept-url pattern="/tenant/contact/delete" access="ROLE_ADMIN"></intercept-url>
+	    
+	   <intercept-url pattern="/commanagement/tenantsproperty/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenantsproperty/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenantsproperty/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/comtenantsproperty/delete" access="ROLE_ADMIN"></intercept-url>
+	   
+	   <intercept-url pattern="/commanagement/tenantsacesscards/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenantsacesscards/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenantsacesscards/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   
+	   <intercept-url pattern="/commanagement/tenantsacesscardspermission/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern= "/commanagement/tenantsacesscardspermission/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenantsacesscardspermission/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   
+	   <intercept-url pattern="/commanagement/tenantsaddressdocuments/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenantsaddressdocuments/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenantsaddressdocuments/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   
+	   <intercept-url pattern="/commanagement/tenantsaddressmedicalemergency/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenantsaddressmedicalemergency/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenantsaddressmedicalemergency/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   
+	   <intercept-url pattern="/commanagement/tenantsarms/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenantsarms/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenantsarms/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/tenantsarms/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   
+	   
+	    <intercept-url pattern="/comfamily" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/family/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/family/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/family/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	    <intercept-url pattern="/commanagement/family/statusButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyaddress/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyaddress/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyaddress/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/family/address/delete" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familycontact/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familycontact/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familycontact/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/family/contact/delete" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyproperty/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyproperty/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyproperty/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyacesscards/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyacesscards/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyacesscards/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyacesscardspermission/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyacesscardspermission/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyacesscardspermission/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern= "/commanagement/familyaddressdocuments/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyaddressdocuments/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyaddressdocuments/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern= "/commanagement/familyaddressdocuments/viewButton" access="ROLE_ADMIN"></intercept-url>
+	    <intercept-url pattern= "/commanagement/familyaddressdocuments/selectFileButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyaddressmedicalemergency/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyaddressmedicalemergency/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyaddressmedicalemergency/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyarms/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyarms/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/familyarms/deleteButton" access="ROLE_ADMIN"></intercept-url>	
+	   	   
+	   
+	    <intercept-url pattern="/comdomestichelp" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelp/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelp/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelp/statusButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpaddress/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpaddress/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpaddress/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/dom/address/delete" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpcontact/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpcontact/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpcontact/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/dom/contact/delete" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpproperty/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpproperty/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpproperty/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpacesscards/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpacesscards/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpacesscards/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpacesscardspermission/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpacesscardspermission/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpacesscardspermission/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpaddressdocuments/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpaddressdocuments/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpaddressdocuments/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpaddressmedicalemergency/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpaddressmedicalemergency/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelpaddressmedicalemergency/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelparms/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelparms/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/domestichelparms/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   
+	   <intercept-url pattern="/commanagement/pets/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/pets/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/pets/activateDeactivateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/petsdocuments/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/petsdocuments/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/petsdocuments/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   
+	   <intercept-url pattern="/commanagement/documentdefiner/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern= "/commanagement/documentdefiner/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/documentdefiner/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   
+	   <intercept-url pattern="/commanagement/documentrepository/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/documentrepository/viewButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/documentrepository/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   
+	   <intercept-url pattern= "/commanagement/accesscards/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/accesscards/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/accesscards/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   
+	   <intercept-url pattern="/accesspointindex" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/accesscardspoints/createButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/accesscardspoints/updateButton" access="ROLE_ADMIN"></intercept-url>
+	   <intercept-url pattern="/commanagement/accesscardspoints/deleteButton" access="ROLE_ADMIN"></intercept-url>	
+	
+	<!-- **************************** MAN POWER Management ************************* -->
+	
+		<intercept-url pattern="/manpowerindex" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/manpower/staffMaster/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/manpower/staffMaster/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/manpower/staffMaster/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/manpower/staffMaster/imageButton" access="ROLE_ADMIN"></intercept-url>
+		
+		<intercept-url pattern="/manpowerse" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/manpower/staffexperience/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/manpower/staffexperience/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/manpower/staffexperience/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/manpower/experience/destroy" access="ROLE_ADMIN"></intercept-url>
+		
+		<intercept-url pattern="/manpowerst" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/manpower/stafftraining/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/manpower/stafftraining/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/manpower/stafftraining/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/manpower/train/destroy" access="ROLE_ADMIN"></intercept-url>
+		
+		 <intercept-url pattern="/manpowersn" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/manpower/staffnotices/createButton" access="ROLE_ADMIN"></intercept-url>		
+		<intercept-url pattern="/manpower/staffnotices/deleteButton" access="ROLE_ADMIN"></intercept-url>			
+		<intercept-url pattern="/manpower/staffnotices/updateButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/manpower/notice/destroy" access="ROLE_ADMIN"></intercept-url>	
+			
+		<intercept-url pattern="/manpower/staffMasterAddress/updateButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/manpower/staffMasterAddress/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/manpower/address/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/manpower/staffMasterAddress/createButton" access="ROLE_ADMIN"></intercept-url>	
+				
+		<intercept-url pattern="/manpower/staffMasterContacts/createButton" access="ROLE_ADMIN"></intercept-url>			
+		<intercept-url pattern="/manpower/staffMasterContacts/deleteButton" access="ROLE_ADMIN"></intercept-url>			
+		<intercept-url pattern="/manpower/staffMasterContacts/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/manpower/contact/delete" access="ROLE_ADMIN"></intercept-url>
+					
+		<intercept-url pattern="/manpower/staffMasterAccessCard/updateButton" access="ROLE_ADMIN"></intercept-url>			
+		<intercept-url pattern="/manpower/staffMasterAccessCard/createButton" access="ROLE_ADMIN"></intercept-url>	
+				
+		<intercept-url pattern="/manpower/staffMasterAccessCardPermission/createButton" access="ROLE_ADMIN"></intercept-url>			
+		<intercept-url pattern="/manpower/staffMasterAccessCardPermission/updateButton" access="ROLE_ADMIN"></intercept-url>
+					
+		<intercept-url pattern="/manpower/staffMasterDocument/uploadButton" access="ROLE_ADMIN"></intercept-url>	
+		
+		<intercept-url pattern="/manpower/staffMasterDocuments/createButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/manpower/staffMasterDocuments/updateButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/manpower/staffMasterDocuments/deleteButton" access="ROLE_ADMIN"></intercept-url>	
+				
+		<intercept-url pattern="/manpower/staffMasterMedicalEmergency/deleteButton" access="ROLE_ADMIN"></intercept-url>			
+		<intercept-url pattern="/manpower/staffMasterMedicalEmergency/createButton" access="ROLE_ADMIN"></intercept-url>			
+		<intercept-url pattern="/manpower/staffMasterMedicalEmergency/updateButton" access="ROLE_ADMIN"></intercept-url>
+					
+		<intercept-url pattern="/manpower/staffMasterArms/deleteButton" access="ROLE_ADMIN"></intercept-url>			
+		<intercept-url pattern="/manpower/staffMasterArms/createButton" access="ROLE_ADMIN"></intercept-url>			
+		<intercept-url pattern="/manpower/staffMasterArms/updateButton" access="ROLE_ADMIN"></intercept-url>			
+		<intercept-url pattern="/manpower/staffMasterPhotoUpload/uploadButton" access="ROLE_ADMIN"></intercept-url>		
+		
+		<!-- **************************** Time And Attendance **************************** -->
+
+		<intercept-url pattern="/patrolTracks" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/timeandattendence/patroltarcks/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/timeandattendence/patroltracks/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/timeandattendence/patroltarcks/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/timeandattendence/patroltarcks/statusButton" access="ROLE_ADMIN"></intercept-url>
+
+		<intercept-url pattern="/PatrolTrackPoints" access="ROLE_ADMIN"></intercept-url> 
+		<intercept-url pattern="/timeandattendence/patroltarckpoints/createButton" access="ROLE_ADMIN"></intercept-url> 
+		<intercept-url pattern="/timeandattendence/patroltrackpoints/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/timeandattendence/patroltarckpoints/statusButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/timeandattendence/patroltarckpoints/deleteButton" access="ROLE_ADMIN"></intercept-url> 
+
+		<intercept-url pattern="/patrolTrackAlert" access="ROLE_ADMIN"></intercept-url> 
+
+		<intercept-url pattern="/patrolTrackStaff" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/timeandattendence/patrolTrackStaff/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/timeandattendence/patrolTrackStaff/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/timeandattendence/patrolTrackStaff/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/timeandattendence/patrolTrackStaff/statusButton" access="ROLE_ADMIN"></intercept-url>
+
+		<intercept-url pattern="/patrolSettings" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/timeandattendence/patrolRoleSettings/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/timeandattendence/patrolRoleSettings/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/timeandattendence/patrolRoleSettings/statusButton" access="ROLE_ADMIN"></intercept-url>
+		
+		
+		
+		<intercept-url pattern="/staffAttendanceGateOutAlert" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/staffAttendanceSummary" access="ROLE_ADMIN"></intercept-url>
+		
+
+		<!-- **************************** Concierge Management **************************** -->
+		
+		<intercept-url pattern="/conciergeServices" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeServices/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeServices/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeServices/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeServices/addOrEditEndDate" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeServices/statusButton" access="ROLE_ADMIN"></intercept-url>
+
+		<intercept-url pattern="/conciergeVendors" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/statusButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/address/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/address/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/address/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeVendor/address/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/contact/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/contact/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/contact/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeVendor/contact/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/documents/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/documents/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/documents/viewButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/documents/selectFile" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/documents/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeVendor/ownerDocument/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/commentsRating/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/commentsRating/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/commentsRating/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeVendors/commentRate/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/conciergeVendors/vendorOtherDetails/updateButton" access="ROLE_ADMIN"></intercept-url>
+
+		<intercept-url pattern="/vendorServices" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/vendorService/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/vendorService/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/vendorService/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/vendorService/addOrEditEndDate" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/vendorService/statusButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/vendorService/serviceCharge/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/vendorService/serviceCharge/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/vendorService/serviceCharge/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<!-- <intercept-url pattern="/vendorServices/charge/delete" access="ROLE_ADMIN"></intercept-url> -->
+		
+		<intercept-url pattern="/serviceBooking" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/serviceBooking/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/serviceBooking/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/serviceBooking/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/conciergeManagement/serviceBooking/statusButton" access="ROLE_ADMIN"></intercept-url>		
+
+		<!-- **************************** Parking Management **************************** -->
+		
+		<intercept-url pattern="/parkingslots" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/parkingslot/importXL" access="ROLE_ADMIN"></intercept-url>			
+		<intercept-url pattern="/parkingManagement/parkingslots/updateButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/parkingManagement/parkingslots/createButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/parkingManagement/parkingslots/deleteButton" access="ROLE_ADMIN"></intercept-url>	
+		
+		<intercept-url pattern="/parkingslotallotment" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/parkingManagement/parkingslotsAllocation/createButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/parkingManagement/parkingslotsAllocation/statusButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/parkingManagement/parkingslotsallocation/deleteButton" access="ROLE_ADMIN"></intercept-url>	
+		
+		<intercept-url pattern="/vehicles" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/parkingManagement/vehicles/createButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/parkingManagement/vehicles/updateButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/parkingManagement/vehicles/deleteButton" access="ROLE_ADMIN"></intercept-url>	
+		
+		<intercept-url pattern="/wrongparking" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/parkingManagement/wrongparking/createButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/parkingManagement/wrongparking/updateButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/parkingManagement/WrongParking/deleteButton" access="ROLE_ADMIN"></intercept-url>	
+		
+		<!-- **************************** Maintainance Management **************************** -->
+		<intercept-url pattern="/maintainance/jobcalender/addeditButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/jobcalender/deleteButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/jobcalender/index/destroy" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/jobcards/addButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/jobcards/editButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/jobcards/deleteButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/jobcardsdetails/destroy" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/jobcards/totalcostButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/jobcards/jobstatusButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/jobcards/suspendstatusButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/toolmaster/addButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/toolmaster/editButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/toolmaster/deleteButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/toolmasterdetails/destroy" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/maintainancetype/addButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/maintainancetype/editButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/maintainancetype/deleteButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintenancetypedetails/destroy" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/jobtype/addButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/jobtype/editButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/jobtype/deleteButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/jobtypedetails/destroy" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/department/assignButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/maintainance/department/unassignButton" access="ROLE_ADMIN"></intercept-url>	
+		<intercept-url pattern="/jobobjective/createbutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobobjective/editbutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobobjective/deletebutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobobjectivedetails/destroy" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobnotes/createbutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobnotes/editbutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobnotes/deletebutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobobnotesdetails/destroy" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobnotification/createbutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobnotification/editbutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobnotification/deletebutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobobnotificationdetails/destroy" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobmaterial/createbutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobmaterial/editbutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobmaterial/deletebutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobobmaterialdetails/destroy" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobteam/createbutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobteam/editbutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobteam/deletebutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobobteamdetails/destroy" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/labourtask/createbutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/labourtask/editbutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/labourtask/deletebutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/joboblabourtaskdetails/destroy" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobtools/createbutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobtools/editbutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobtools/deletebutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobobtoolsdetails/destroy" access="ROLE_ADMIN"></intercept-url>		
+		<intercept-url pattern="/jobdocuments/createbutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobdocuments/editbutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobdocuments/deletebutton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/jobdocumentsdetails/destroy" access="ROLE_ADMIN"></intercept-url>
+	
+		<!-- **************************** Visitor Management **************************** -->
+		
+		<intercept-url pattern="/visitorwizard" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/visitormanagement/visitorwizard/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/visitormanagement/visitorwizard/searchButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/visitormanagement/visitorwizard/exitButton" access="ROLE_ADMIN"></intercept-url>           
+		  
+		<intercept-url pattern="/visitordetails" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/visitormanagement/visitors/createButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/visitormanagement/visitors/updateButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/visitormanagement/visitors/uploadButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/visitormanagement/visitors/viewButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/visitormanagement/visitordetails/uploadButton" access="ROLE_ADMIN"></intercept-url>
+		
+		  
+		<intercept-url pattern="/storevisitor" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/visitormanagement/visitormaster/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  
+		 <!-- **************************** File Drawing Management **************************** -->
+		                    
+		   
+		 <intercept-url pattern="/filerepository" access="ROLE_ADMIN"></intercept-url>
+		 <intercept-url pattern="/filerepositorymanagement/filerepository/createButton" access="ROLE_ADMIN"></intercept-url>
+		 <intercept-url pattern="/filerepositorymanagement/filerepository/updateButton" access="ROLE_ADMIN"></intercept-url>
+		 <intercept-url pattern="/filerepositorymanagement/filerepository/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/filerepositorymanagement/filerepository/viewDocumentButton" access="ROLE_ADMIN"></intercept-url>
+			                          
+		 <intercept-url pattern="/filerepositorymaster" access="ROLE_ADMIN"></intercept-url>
+		 <intercept-url pattern="/filerepositorymanagement/filerepositorymaster/createButton" access="ROLE_ADMIN"></intercept-url>
+		 <intercept-url pattern="/filerepositorymanagement/filerepositorymaster/updateButton" access="ROLE_ADMIN"></intercept-url>
+		 <intercept-url pattern="/filerepositorymanagement/filerepositorymaster/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		 <intercept-url pattern="/filerepositorymanagement/filerepositorymaster/uploadDocumentButton" access="ROLE_ADMIN"></intercept-url>
+		 <intercept-url pattern="/filerepositorymanagement/filerepositorymaster/downloadDocumentButton" access="ROLE_ADMIN"></intercept-url>
+		 <intercept-url pattern="/filerepositorymaster/filerepositorymaster/statusButton" access="ROLE_ADMIN"></intercept-url>
+		
+		<!-- **** FOR MAILROOM MANAGEMENT ***** -->
+
+		  <!--MailRoom Use Case-->
+		  <intercept-url pattern="/mailroom" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/mailroomManagement/mailroom/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/mailroomManagement/mailroom/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/mailroomManagement/mailroom/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/mailroomManagement/mailroom/selectSingleCheckBox" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/mailroomManagement/mailroom/selectAllCheckBox" access="ROLE_ADMIN"></intercept-url>
+		
+		  <!--MailRoomDelivery Use Case-->
+		  <intercept-url pattern="/mailroomDelivery" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/mailroomManagement/mailroomDelivery/selectSingleCheckBox" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/mailroomManagement/mailroomDelivery/selectAllCheckBox" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/mailroomManagement/mailroomDelivery/updateButton" access="ROLE_ADMIN"></intercept-url>		  
+		  
+		<!-- *************************************** PROCUREMENT MANAGEMENT ********************************* -->
+
+		  <!-- **** FOR REUISITION USE CASE ***** -->
+		  <intercept-url pattern="/requisition" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/requisition/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/requisition/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/requisition/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/requisition/approveButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/requisition/rejectButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/requisition/printButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <!-- For RequisitionDetails(Hierarchy for Requisition) -->
+		  <intercept-url pattern="/procurement/requisitionDetails/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/requisitionDetails/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/requisitionDetails/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/requisitionDetails/destroyRequisitionDetails" access="ROLE_ADMIN"></intercept-url>
+		
+		  <!-- **** FOR ITEM_MASTER USE CASE ***** -->
+		  <intercept-url pattern="/itemMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/itemMaster/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/itemMaster/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/itemMaster/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <!-- For UOM(Hierarchy for ItemMaster) -->
+		  <intercept-url pattern="/procurement/uom/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/uom/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/uom/activateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/uom/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		
+		  <!-- **** FOR VENDOR_PRICELIST USE CASE ***** -->
+		  <intercept-url pattern="/vendorPriceList" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/vendorPriceList/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/vendorPriceList/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/procurement/vendorPriceList/activateButton" access="ROLE_ADMIN"></intercept-url>
+  
+  		<!-- ************************************** VENDOR MANAGEMENT USE CASE ************************************** -->
+  
+		  <!--For Vendors-->
+		  <intercept-url pattern="/vendors" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendors/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendors/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendors/activateButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <!-- For Address(Hierarchy for vendors) -->
+		  <intercept-url pattern="/vendorManagement/vendorAddress/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorAddress/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorAddress/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendors/address/delete" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorAddress/contactButton" access="ROLE_ADMIN"></intercept-url>
+		   	
+		  <!-- For Contacts(Hierarchy for vendors) -->
+		  <intercept-url pattern="/vendorManagement/contacts/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/contacts/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/contacts/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		  		  
+		  <!-- For Documents(Hierarchy for vendors) -->
+		  <intercept-url pattern="/vendorManagement/documents/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/documents/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/documents/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/documents/viewButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/documents/approveDocumentButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/documents/selectFilesForDocumentButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <!-- For VendorOtherDetails(Hierarchy for vendors) -->
+		  <intercept-url pattern="/vendorManagement/vendorOtherDetails/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorOtherDetails/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorOtherDetails/activateEmpanellButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <!--For VendorContracts-->
+		  <intercept-url pattern="/vendorContracts" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorContracts/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorContracts/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorContracts/activateButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <!-- For VC_LineItems(Hierarchy for VendorContracts) -->
+		  <intercept-url pattern="/vendorManagement/vendorContractsLineItems/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorContractsLineItems/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		
+		  <!--For VendorInvoices-->
+		  <intercept-url pattern="/vendorInvoice" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorInvoice/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorInvoice/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorInvoice/activateButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <!-- For VendorPayments(Hierarchy For VendorInvoices) -->
+		  <intercept-url pattern="/vendorManagement/vendorPayments/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorPayments/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorPayments/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorPayments/vendorPaymentsDestroyUrl" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <!-- For VI_LineItems(Hierarchy For VendorInvoices) -->
+		  <intercept-url pattern="/vendorManagement/vendorInvoiceLineItems/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorInvoiceLineItems/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorInvocieLineItems/vendorInvoiceLineItemsDestroyUrl" access="ROLE_ADMIN"></intercept-url>
+		
+		  <!--For VendorInvoices-->
+		  <intercept-url pattern="/vendorIncidents" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorIncidents/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorIncidents/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorIncidents/activateButton" access="ROLE_ADMIN"></intercept-url>
+		
+		  <!--For Vendorincidents -->
+		  <intercept-url pattern="/vendorRequests" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorRequests/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorRequests/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/vendorManagement/vendorRequests/updateStatusButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  
+		  <!-- ************************************** ASSET MANAGEMENT USE CASE ************************************** -->
+  
+		  <intercept-url pattern="/assetmaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/asset/master/createButton" access="ROLE_ADMIN"></intercept-url>
+	   	  <intercept-url pattern="/asset/master/updateButton" access="ROLE_ADMIN"></intercept-url>
+	      <intercept-url pattern="/asset/master/approverejectButton" access="ROLE_ADMIN"></intercept-url>
+	      <intercept-url pattern="/asset/master/uploaddownloadButton" access="ROLE_ADMIN"></intercept-url>
+	      <intercept-url pattern="/asset/master/printButton" access="ROLE_ADMIN"></intercept-url>
+	    
+	
+	      <intercept-url pattern="/asset/spares/createButton" access="ROLE_ADMIN"></intercept-url>
+	      <intercept-url pattern="/asset/spares/updateButton" access="ROLE_ADMIN"></intercept-url>
+	      <intercept-url pattern="/asset/spares/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	      <intercept-url pattern="/asset/spares/delete" access="ROLE_ADMIN"></intercept-url>
+	    
+	
+	     <intercept-url pattern="/asset/warranty/createButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/warranty/updateButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/warranty/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/warranty/delete" access="ROLE_ADMIN"></intercept-url>
+
+	     <intercept-url pattern="/asset/maintcost/createButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/maintcost/updateButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/maintcost/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/maintenance/delete" access="ROLE_ADMIN"></intercept-url>
+	    
+	  
+	     <intercept-url pattern="/assetownership" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/ownership/createButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/ownership/updateButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/ownership/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/ownership/delete" access="ROLE_ADMIN"></intercept-url>
+	    
+	
+	     <intercept-url pattern="/assetservicehistory" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/service/createButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/service/updateButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/service/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/servicehistory/delete" access="ROLE_ADMIN"></intercept-url>
+	
+	     <intercept-url pattern="/assetmaintenanceschedule" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/maintsch/createButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/maintsch/updateButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/maintsch/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	      <intercept-url pattern="/asset/maintsch/approverejectButton" access="ROLE_ADMIN"></intercept-url>
+	      <intercept-url pattern="/asset/maintenanceschedule/delete" access="ROLE_ADMIN"></intercept-url>
+	    
+	 
+	 <intercept-url pattern="/assetcat" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/cat/createButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/cat/updateButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/cat/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	      <intercept-url pattern="/asset/cat/delete" access="ROLE_ADMIN"></intercept-url>
+	
+	     <intercept-url pattern="/assetloc" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/loc/createButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/loc/updateButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/loc/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	      <intercept-url pattern="/asset/loc/delete" access="ROLE_ADMIN"></intercept-url>
+
+	     <intercept-url pattern="/assetphysicalsurvey" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/physurvey/createButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/physurvey/updateButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/physurvey/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/asset/physicalsurvey/delete" access="ROLE_ADMIN"></intercept-url>
+	    <intercept-url pattern="/asset/physurvey/statusButton" access="ROLE_ADMIN"></intercept-url>
+	    
+	
+	     <intercept-url pattern="/asset/physurveyreport/updateButton" access="ROLE_ADMIN"></intercept-url>
+			
+		
+		<intercept-url pattern="/manpower/accesscard/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/owner/accesscard/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/dom/accesscard/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/tenant/accesscard/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/family/accesscard/delete" access="ROLE_ADMIN"></intercept-url>
+
+
+		<intercept-url pattern="/manpower/accesscardspermisions/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/owner/accesscardspermisions/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/dom/accesscardspermisions/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/tenant/accesscardspermisions/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/family/accesscardspermisions/delete" access="ROLE_ADMIN"></intercept-url>
+
+		
+		<intercept-url pattern="/manpower/ownerDocument/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/owner/ownerDocument/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/dom/ownerDocument/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/tenant/ownerDocument/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/family/ownerDocument/delete" access="ROLE_ADMIN"></intercept-url>
+		
+		
+		<intercept-url pattern="/manpower/medicalEmergencyDisability/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/owner/medicalEmergencyDisability/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/dom/medicalEmergencyDisability/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/tenant/medicalEmergencyDisability/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/family/medicalEmergencyDisability/delete" access="ROLE_ADMIN"></intercept-url>
+		
+		<intercept-url pattern="/manpower/arms/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/owner/arms/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/dom/arms/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/tenant/arms/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/family/arms/delete" access="ROLE_ADMIN"></intercept-url>
+		
+		
+		<intercept-url pattern="/comowner/property/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/comfamily/property/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/comtenantsproperty/delete" access="ROLE_ADMIN"></intercept-url>
+		<intercept-url pattern="/comdomestichelp/property/delete" access="ROLE_ADMIN"></intercept-url>
+		
+		
+		
+		
+		 <!-- ************************************** INVENTORY MANAGEMENT MODULE ************************************** -->
+  
+		  <!--For Store Master-->
+		  <intercept-url pattern="/storeMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeMaster/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeMaster/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeMaster/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		
+		  <!--For Store Goods Receipt-->
+		  <intercept-url pattern="/storeGoodsReceipt" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeGoodsReceipt/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeGoodsReceipt/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeGoodsReceipt/deleteButton" access="ROLE_ADMIN"></intercept-url>
+
+		  <!--For Store Goods Receipt Items-->
+		  <intercept-url pattern="/storeGoodsReceiptItems" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeGoodsReceiptItems/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeGoodsReceiptItems/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeGoodsReceiptItems/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		
+		  <!--For Store Issue-->
+		  <intercept-url pattern="/storeIssue" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeIssue/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeIssue/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeIssue/deleteButton" access="ROLE_ADMIN"></intercept-url>
+
+		  <!--For Store Movement-->
+		  <intercept-url pattern="/storeMovement" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeMovement/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeMovement/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeMovement/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		
+		  <!--For Store Goods Returns-->
+		  <intercept-url pattern="/storeGoodsReturns" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeGoodsReturns/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeGoodsReturns/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeGoodsReturns/deleteButton" access="ROLE_ADMIN"></intercept-url>
+
+		  <!--For Store Adjustments-->
+		  <intercept-url pattern="/storeAdjustments" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeAdjustments/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeAdjustments/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeAdjustments/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		
+		  <!--For Store Item Ledger-->
+		  <intercept-url pattern="/storeItemLedger" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeItemLedger/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeItemLedger/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeItemLedger/deleteButton" access="ROLE_ADMIN"></intercept-url>
+
+		  <!--For Store Item Ledger Details-->
+		  <intercept-url pattern="/storeItemLedgerDetails" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeItemLedgerDetails/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeItemLedgerDetails/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storeItemLedgerDetails/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		
+		  <!--For Store Physical Inventory Survey-->
+		  <intercept-url pattern="/storePhysicalInventory" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storePhysicalInventory/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storePhysicalInventory/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storePhysicalInventory/deleteButton" access="ROLE_ADMIN"></intercept-url>
+
+		  <!--For Store Physical Inventory Survey Report-->
+		  <intercept-url pattern="/storePhysicalInventoryReport" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storePhysicalInventoryReport/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storePhysicalInventoryReport/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/inventory/storePhysicalInventoryReport/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		 
+		 <intercept-url pattern="/inventory/stockoutward/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	    <intercept-url pattern="/inventory/stockoutward/editButton" access="ROLE_ADMIN"></intercept-url>
+	    <intercept-url pattern="/inventory/stockoutward/statusButton" access="ROLE_ADMIN"></intercept-url>
+	    <intercept-url pattern="/inventory/stockoutward/createButton" access="ROLE_ADMIN"></intercept-url>
+	    
+		   <!-- ************************************** END ************************************** -->
+		   
+		   <!-- ************************************** Customer Care Management Use Case ************************************** -->
+		  <intercept-url pattern="/CustomerCare/OpenNewTicket/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/CustomerCare/OpenNewTicket/editButton" access="ROLE_ADMIN"></intercept-url>
+	   	  <intercept-url pattern="/CustomerCare/OpenNewTicket/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	   	  <intercept-url pattern="/openNewTickets/openTicketDestroy" access="ROLE_ADMIN"></intercept-url>
+	      <intercept-url pattern="/CustomerCare/OpenNewTicket/re-OpenTicketStatusButton" access="ROLE_ADMIN"></intercept-url>	    
+	
+	      <intercept-url pattern="/CustomerCare/respondTicket/deptAcceptStatusButton" access="ROLE_ADMIN"></intercept-url>
+	      <intercept-url pattern="/CustomerCare/respondTicket/deptRejectStatusButton" access="ROLE_ADMIN"></intercept-url>
+	      <intercept-url pattern="/CustomerCare/respondTicket/viewConversationButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/CustomerCare/RespondTicket/editButton" access="ROLE_ADMIN"></intercept-url>
+		 
+	     <intercept-url pattern="/CustomerCare/RespondTicket/PostReply/createButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/CustomerCare/RespondTicket/PostReply/editButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/CustomerCare/RespondTicket/PostReply/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/respondTickets/postReplyDestroy" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/CustomerCare/RespondTicket/PostReply/closedTicketButton" access="ROLE_ADMIN"></intercept-url>
+		 
+	     <intercept-url pattern="/CustomerCare/RespondTicket/PostInternalNote/createButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/CustomerCare/RespondTicket/PostInternalNote/editButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/CustomerCare/RespondTicket/PostInternalNote/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/respondTickets/postInternalNoteDestroy" access="ROLE_ADMIN"></intercept-url>	     
+	     <intercept-url pattern="/CustomerCare/RespondTicket/PostInternalNote/closedTicketButton" access="ROLE_ADMIN"></intercept-url>	    
+	
+	     <intercept-url pattern="/CustomerCare/RespondTicket/DepartmentTransfer/createButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/CustomerCare/RespondTicket/DepartmentTransfer/editButton" access="ROLE_ADMIN"></intercept-url>
+	     <!-- <intercept-url pattern="/CustomerCare/RespondTicket/TransferedTickets/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/respondTickets/departmentTransferDestroy" access="ROLE_ADMIN"></intercept-url> -->
+		 
+	     <intercept-url pattern="/CustomerCare/RespondTicket/AssignTicket/createButton" access="ROLE_ADMIN"></intercept-url> 
+	     <intercept-url pattern="/CustomerCare/RespondTicket/AssignTicket/editButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/CustomerCare/RespondTicket/EscalatedTickets/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/respondTickets/ticketAssignDestroy" access="ROLE_ADMIN"></intercept-url>
+		 
+	     <intercept-url pattern="/CustomerCare/TransferedTickets/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/respondTickets/departmentTransferDestroy" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/CustomerCare/EscalatedTickets/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/respondTickets/ticketAssignDestroy" access="ROLE_ADMIN"></intercept-url>
+	 
+	     <intercept-url pattern="/CustomerCare/HelpTopic/createButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/CustomerCare/HelpTopic/editButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/CustomerCare/HelpTopic/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	     <!-- <intercept-url pattern="/helpTopics/helpTopicDestroy" access="ROLE_ADMIN"></intercept-url> -->
+		 <intercept-url pattern="/CustomerCare/HelpTopic/activateInactivateButton" access="ROLE_ADMIN"></intercept-url>
+		 
+		 <intercept-url pattern="/CustomerCare/DepartmentAccessSettings/createButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/CustomerCare/DepartmentAccessSettings/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/HelpDeskSettings/departmentAccessSettingsDestroy" access="ROLE_ADMIN"></intercept-url>
+		 
+		 <intercept-url pattern="/helpdeskmanagement/faq/createButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/helpdeskmanagement/faq/updateButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/helpdeskmanagement/faq/deleteButton" access="ROLE_ADMIN"></intercept-url>
+	     <intercept-url pattern="/faqsection" access="ROLE_ADMIN"></intercept-url>
+	       
+	      <intercept-url pattern="/helpdeskmanagement/lostandfound/createButton" access="ROLE_ADMIN"></intercept-url>
+	      <intercept-url pattern="/helpdeskmanagement/lostandfound/updateButton" access="ROLE_ADMIN"></intercept-url>
+	      <intercept-url pattern="/helpdeskmanagement/lostandfound/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		 <!-- ************************************** End ************************************** -->
+		 
+		  <!-- ************************************** Billing Collectins Use Case ************************************** -->
+		  <intercept-url pattern="/Collections/Payments/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/Payments/cancelButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/Payments/approvedPostedButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/Payments/approveCollectionButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/Payments/postCollectionButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/PaymentSegments/viewSubSegmentsButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/Payments/receiptGenarationButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/Payments/cancelReceiptButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Collections/Adjustments/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/Adjustments/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/Adjustments/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/Adjustments/approvePostButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/Adjustments/postAllButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/Adjustments/approveAllButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/Adjustments/LineItem/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/Adjustments/LineItem/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/Adjustments/LineItem/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Collections/BankRemittance/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/BankRemittance/editButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/BankRemittance/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/BankRemittance/uploadButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Collections/BankStatements/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/BankStatements/editButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/BankStatements/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Collections/BankStatements/uploadFileButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <!-- ************************************** Billing Collectins Use Case ************************************** -->
+		  
+		   <!-- ************************************** Billing Masters Use Case ************************************** -->
+		  <intercept-url pattern="/Masters/ServiceParameterMaster/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/ServiceParameterMaster/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/ServiceParameterMaster/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/ServiceParameterMaster/activeInactiveButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Masters/BillParameterMaster/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/BillParameterMaster/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/BillParameterMaster/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/BillParameterMaster/activeInactiveButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Masters/MeterParameterMaster/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/MeterParameterMaster/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/MeterParameterMaster/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/MeterParameterMaster/activeInactiveButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Masters/Meters/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/Meters/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/Meters/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/Meters/activeInactiveButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Masters/Meters/MeterParameters/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/Meters/MeterParameters/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/Meters/MeterParameters/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/Meters/MeterParameters/activeInactiveButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Masters/Meters/MeterLocation/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/Meters/MeterLocation/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/Meters/MeterLocation/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Master/Meters/releaseMeterButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Masters/MeterStatus/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/MeterStatus/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/MeterStatus/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Masters/TransactionMaster/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/TransactionMaster/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/TransactionMaster/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Masters/InterestSettings/createButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Masters/FRChange/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/FRChange/editButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/FRChange/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  
+		  <intercept-url pattern="/Masters/AMRSettings/create" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/AMRSettings/update" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/AMRSettings/delete" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Masters/AMRSettings/status" access="ROLE_ADMIN"></intercept-url>
+		  <!-- ************************************** Billing Masters Use Case ************************************** -->
+		  
+		   <!-- ************************************** Billing Services Use Case ************************************** -->
+		  <intercept-url pattern="/Services/ServiceMaster/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Services/ServiceMaster/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Services/ServiceMaster/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Services/ServiceMaster/activeInactiveButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Services/ServiceMaster/serviceEndDateButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Services/ServiceMaster/ServiceParameter/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Services/ServiceMaster/ServiceParameter/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Services/ServiceMaster/ServiceParameter/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Services/ServiceMaster/ServiceParameter/activeInactiveButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Services/ServiceMaster/ServiceAccount/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Services/ServiceMaster/ServiceAccount/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Services/ServiceMaster/ServiceAccount/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Services/ServiceMaster/ServiceAccount/activeInactiveButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Services/ServiceMaster/ServiceAccount/ledgerEndButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <!-- ************************************** Billing Services Use Case ************************************** -->
+		  
+		  <!-- ************************************** Billing Accounts Use Case ************************************** -->
+		  <intercept-url pattern="/Accounts/Account/activeInactiveButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Accounts/ServiceOnBoard/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Accounts/ServiceOnBoard/approveButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Accounts/Deposits/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Accounts/Deposits/DepositLines/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Accounts/Deposits/DepositLines/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Accounts/Deposits/DepositLines/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Accounts/Deposits/RefundPayments/createButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <!-- ************************************** Billing Accounts Use Case ************************************** -->
+		  
+		   <!-- ************************************** Billing Bill Generation Use Case ************************************** -->
+		  <intercept-url pattern="/BillGeneration/GenerateBills/GenerateBillButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/GenerateBills/generateTeleBroadBandBill" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/GenerateBills/bulkBillButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/GenerateBills/raiseDepositButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/GenerateBills/approveAllButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/GenerateBills/postAllButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/GenerateBills/approvePostButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/GenerateBills/cancelButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/GenerateBills/viewBillButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/GenerateBills/GenerateBackBillButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/BillGeneration/GenerateBills/BillLineItem/createButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/BillGeneration/ConsolidateBills/consolidateBillButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/BillGeneration/ViewBills/sendMailButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/ViewBills/consolidateBillButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/ViewBills/individualBillButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/ViewBills/sendBillButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/ViewBills/sendAllBillsButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/BillGeneration/AdvanceBilling/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/AdvanceBilling/approveButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/BillGeneration/UnAssedPoints/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/UnAssedPoints/editButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/UnAssedPoints/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/UnAssedPoints/activeInactiveButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/BillGeneration/UnAssedDetails/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/UnAssedDetails/editButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/BillGeneration/GenerateBatchBill/createBatch" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/GenerateBatchBill/billAll" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/GenerateBatchBill/exportToExcel" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/GenerateBills/uploadBatchFile" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/GenerateBills/uploadXMLFile" access="ROLE_ADMIN"></intercept-url>
+		  
+		  
+		  <intercept-url pattern="/BillGeneration/billingSettings/create" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/billingSettings/update" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/billingSettings/delete" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/BillGeneration/billingSettings/status" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <!-- ************************************** Billing Bill Generation Use Case ************************************** -->
+		  
+		  <!-- ************************************** Billing CAM Use Case ************************************** -->
+		  <intercept-url pattern="/CAM/CAMLedger/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/CAM/CAMLedger/destroyButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/CAM/CAMLedger/approveButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/CAM/CAMBills/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/CAM/CAMBills/billButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/CAM/CAMBills/approvePostButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/CAM/CAMCharges/CreateButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/CAM/CAMReportSettings/CreateButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <!-- ************************************** Billing CAM Use Case ************************************** -->
+		  
+		   <!-- ************************************** Billing Rate Master Use Case ************************************** -->
+		  <intercept-url pattern="/Tariff/Electricity/RateMaster/createRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Electricity/RateMaster/showAllRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Electricity/RateMaster/updateRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Electricity/RateMaster/deleteRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Electricity/RateMaster/activitRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Tariff/Electricity/RateSlab/createRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Electricity/RateSlab/mergeRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Electricity/RateSlab/splitRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Electricity/RateSlab/updateRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Electricity/RateSlab/deleteRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Electricity/RateSlab/activitRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Tariff/Electricity/TODRate/createTODRate" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Electricity/TODRate/updateTODRate" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Electricity/TODRate/deleteTODRate" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Electricity/TODRate/activitTODRate" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Tariff/Water/RateMaster/createRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Water/RateMaster/showAllRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Water/RateMaster/updateRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Water/RateMaster/deleteRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Water/RateMaster/activitRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Tariff/Water/RateSlab/createRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Water/RateSlab/mergeRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Water/RateSlab/splitRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Water/RateSlab/updateRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Water/RateSlab/deleteRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Water/RateSlab/activitRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Tariff/Gas/RateMaster/createRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Gas/RateMaster/showAllRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Gas/RateMaster/updateRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Gas/RateMaster/deleteRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Gas/RateMaster/activitRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Tariff/Gas/RateSlab/createRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Gas/RateSlab/mergeRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Gas/RateSlab/splitRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Gas/RateSlab/updateRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Gas/RateSlab/deleteRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Gas/RateSlab/activitRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Tariff/SolidWaste/RateMaster/createRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/SolidWaste/RateMaster/showAllRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/SolidWaste/RateMaster/updateRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/SolidWaste/RateMaster/deleteRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/SolidWaste/RateMaster/activitRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Tariff/SolidWaste/RateSlab/createRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/SolidWaste/RateSlab/mergeRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/SolidWaste/RateSlab/splitRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/SolidWaste/RateSlab/updateRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/SolidWaste/RateSlab/deleteRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/SolidWaste/RateSlab/activitRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  
+		  
+		  <intercept-url pattern="/Tariff/CommonServices/RateMaster/createRateMaster" access="ROLE_ADMIN"></intercept-url>
+		 <!--  <intercept-url pattern="/Tariff/CommonServices/RateMaster/showAllRateMaster" access="ROLE_ADMIN"></intercept-url> -->
+		  <intercept-url pattern="/Tariff/CommonServices/RateMaster/updateRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/CommonServices/RateMaster/deleteRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/CommonServices/RateMaster/activitRateMaster" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Tariff/CommonServices/RateSlab/createRateSlab" access="ROLE_ADMIN"></intercept-url>
+		<!--  <intercept-url pattern="/Tariff/CommonServices/RateSlab/mergeRateSlab" access="ROLE_ADMIN"></intercept-url> 
+		  <intercept-url pattern="/Tariff/CommonServices/RateSlab/splitRateSlab" access="ROLE_ADMIN"></intercept-url> -->
+		  <intercept-url pattern="/Tariff/CommonServices/RateSlab/updateRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/CommonServices/RateSlab/deleteRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/CommonServices/RateSlab/activitRateSlab" access="ROLE_ADMIN"></intercept-url>
+		  <!-- ************************************** Billing Rate Master Use Case ************************************** -->
+		  
+		   <!-- ************************************** Billing Tariff Master Use Case ************************************** -->
+		  <intercept-url pattern="/Tariff/Electricity/TariffMaster/createTariffMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Electricity/TariffMaster/updateTariffMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Electricity/TariffMaster/deleteTariffMaster" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Tariff/Water/TariffMaster/createTariffMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Water/TariffMaster/updateTariffMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Water/TariffMaster/deleteTariffMaster" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Tariff/Gas/TariffMaster/createTariffMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Gas/TariffMaster/updateTariffMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/Gas/TariffMaster/deleteTariffMaster" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Tariff/SolidWaste/TariffMaster/createTariffMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/SolidWaste/TariffMaster/updateTariffMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/SolidWaste/TariffMaster/deleteTariffMaster" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <intercept-url pattern="/Tariff/CommonServices/TariffMaster/createTariffMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/CommonServices/TariffMaster/updateTariffMaster" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/Tariff/CommonServices/TariffMaster/deleteTariffMaster" access="ROLE_ADMIN"></intercept-url>
+		  
+		  <!-- **************************************Notifdication Use Case ************************************** -->
+		  
+		  <intercept-url pattern="/customerCare/Notification/updateButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/customerCare/Notification/createButton" access="ROLE_ADMIN"></intercept-url>
+		  <intercept-url pattern="/customerCare/Notification/deleteButton" access="ROLE_ADMIN"></intercept-url>
+		  
+		   		
+		<logout logout-success-url="/logout" invalidate-session="true" delete-cookies="JSESSIONID" />
+		<form-login always-use-default-target="true"  login-page="/login" default-target-url="/home"  authentication-failure-url="/login"  />
+	
+	
+		
+		<session-management invalid-session-url="/loginExpire" >
+    		<concurrency-control  expired-url="/loginExpire" max-sessions="1" />
+		</session-management>		
+		
+	</http>	
+	  
+	<!-- LDAP Configuration -->
+
+	<authentication-manager>
+		<ldap-authentication-provider 
+			user-search-filter="(cn={0})" user-search-base="ou=Users"
+			group-search-filter="(uniqueMember={0})" group-search-base="ou=Roles"
+			group-role-attribute="cn" role-prefix="ROLE_">
+		</ldap-authentication-provider>
+	</authentication-manager>	
+
+<!-- 	<ldap-server url="ldap://192.168.2.252:389/dc=IREO_BFM,dc=com"/> -->
+	
+	<beans:bean id="accessDecisionManager" class="com.bcits.bfm.securitycontroller.CustomAccessDecisionManager">
+    	<beans:property name="allowIfAllAbstainDecisions" value="false"/>
+    		<beans:property name="decisionVoters">
+    			<beans:list>
+    			    <beans:bean class="org.springframework.security.access.vote.RoleVoter"/>
+    			</beans:list>
+    		</beans:property>
+	</beans:bean>
+	
+ 
+</beans:beans>

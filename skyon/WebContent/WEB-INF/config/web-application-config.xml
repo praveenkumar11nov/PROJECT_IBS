@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:webflow="http://www.springframework.org/schema/webflow-config"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:ehcache="http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring		
+		http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd
+		http://www.springframework.org/schema/task 
+		http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+<!-- <task:scheduler id="taskScheduler"/> -->
+<!-- <task:executor id="taskExecutor" pool-size="10"/> -->
+
+<!-- <task:annotation-driven executor="taskExecutor"	scheduler="taskScheduler" /> -->
+<task:annotation-driven executor="taskExecutor"/>
+
+<bean id="taskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="5" />
+		<property name="maxPoolSize" value="10" />
+		<property name="queueCapacity" value="25" />
+		<property name="waitForTasksToCompleteOnShutdown" value="true" />
+		<!-- <property name="awaitTerminationSeconds" value="2" /> -->
+		<property name="rejectedExecutionHandler">
+			<bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+		</property>
+
+	</bean>
+	
+	<bean id="taskExecutorImpl" class="com.bcits.bfm.service.postInvoiceToTallyServiceImpl.TallyAllInvoicePostServiceImpl">
+		<constructor-arg ref="taskExecutor" />
+	</bean>	
+	<bean id="taskExecutorImpl1" class="com.bcits.bfm.service.postInvoiceToTallyServiceImpl.TallyAllBillPostServiceImpl">
+		<constructor-arg ref="taskExecutor" />
+	</bean>	
+	
+
+<!--EhCache configuration starts  -->					
+					
+<bean id="ldapbussinessmodel" class="com.bcits.bfm.ldap.LdapBusinessModel"  /> 
+<ehcache:annotation-driven cache-manager="ehCacheManager" />
+
+	<bean id="ehCacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation">
+			<value>/WEB-INF/config/ehcache.xml</value>
+		</property>
+	</bean>
+
+	<bean id="ehCacheFactory" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<ref bean="ehCacheManager" />
+		</property>
+		<property name="bootstrapCacheLoader">
+			<ref bean="myBootstrapCacheLoaderFactory" />
+		</property>
+	</bean>
+	<bean id="myBootstrapCacheLoaderFactory"
+		class="com.bcits.bfm.util.MyBootstrapCacheLoaderFactory">
+		<property name="cacheManager">
+			<ref bean="ehCacheManager" />
+		</property>
+		<property name="ldapbussinessmodel">
+			<ref bean="ldapbussinessmodel" />
+		</property>
+	</bean>
+
+	<!--EhCache configuration End  -->
+	
+
+					 
+	<!-- Enables controllers mapped with @RequestMapping annotations, formatting 
+		annotations @NumberFormat @DateTimeFormat, and JSR 303 style validation -->
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
+	
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en" />
+	</bean>
+	 
+	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="language"></property>
+		</bean>
+	</mvc:interceptors>
+	
+	<!-- Register the welcome.properties -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages/welcome" />
+	</bean>
+
+	 
+	
+	
+	<!--Configuration to load messages from ResourceBundle from classpath -->
+	<!-- <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="messages/welcome" />
+		<property name="defaultEncoding" value="UTF-8"/>
+	</bean> -->
+	
+	<!--Configuration to load messages from ResourceBundle from classpath -->
+	<bean id="confSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages/configuration" />
+	</bean>	
+	
+	<!-- Bootstraps JSR-303 validation and exposes it through Spring's Validator 
+		interface -->
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="messageInterpolator">
+      		<bean class="com.bcits.bfm.util.CustomSpringMessageSourceInterpolator" />
+    	</property>
+    </bean>	
+
+	
+	
+	<!--Configuration for cache control -->
+	<mvc:interceptors>
+   <mvc:interceptor>
+    <mvc:mapping path="WebContent/resources/kendo/*.js"/>
+    <bean id="webContentInterceptor" 
+         class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+        <property name="cacheSeconds" value="0"/>
+        <property name="useExpiresHeader" value="true"/>
+        <property name="useCacheControlHeader" value="true"/>
+        <property name="useCacheControlNoStore" value="true"/>
+    </bean>
+   </mvc:interceptor>
+</mvc:interceptors>	
+	
+	<!-- Scans the classpath for annotated components that will be auto-registered 
+		as Spring beans. For example @Controller and @Service. Make sure to set the 
+		correct base-package -->
+	<context:component-scan base-package="com.bcits.bfm" />
+	
+ 
+	<!--Configuration to load Property file from Jboss home -->
+	<!-- <context:property-placeholder location="file:#{systemProperties['jboss.home.dir']}/standalone/configuration/configuration.properties"/> -->
+ 
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView"></property>
+		<property name="prefix" value="/WEB-INF/jsps/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+    <mvc:resources mapping="/resources/**" location="/resources/" cache-period="36000" />
+      
+	<!-- Scans for application @Components to deploy -->
+	<context:component-scan base-package="com.bfm" />	
+
+
+	 
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	
+	<!-- Load Hibernate related configuration -->
+	<import resource="data-access-config.xml" />
+
+</beans>

@@ -1,0 +1,47 @@
+{   "Navigations": [
+        {
+            "text": "User Management",
+            "name": "User Management",
+            "items": [
+                {
+                    "text": "Manage Users",
+                    "url": "usmgm",
+                    "role" : "admin"
+                },
+                 {
+                    "text": "Manage Groups",
+                    "url": "usmgm",
+                    "role" : "user"
+                },
+                {
+                    "text": "Manage Roles",
+                    "url": "usmgm",
+                    "role" : "user"
+                }
+            ]
+        },
+        {
+        	"text" : "Product Access Management",
+        	"name" : "Product Access Management",
+        	"items": [
+                {
+                    "text": "Add Product",
+                    "url": "",
+                    "role" : "admin"
+                },
+                {
+                    "text": "Manage Tasks",
+                    "url": "pam",
+                    "role" : "user"
+                },
+                {
+                    "text": "Manage Forms",
+                    "url": "pam",
+                    "role" : "admin"
+                    
+                }
+        	]
+        }
+       ]
+}
+        

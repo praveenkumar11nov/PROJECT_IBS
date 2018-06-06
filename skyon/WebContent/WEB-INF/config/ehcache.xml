@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="classpath:ehcache.xsd">
+
+	<cache name="messageCache" maxElementsInMemory="1000" eternal="true"
+		overflowToDisk="false" memoryStoreEvictionPolicy="LFU">
+	</cache>
+
+	<cache name="menuAttributes" maxElementsInMemory="1000" eternal="true"
+		overflowToDisk="false" memoryStoreEvictionPolicy="LFU">
+	</cache>
+
+</ehcache>

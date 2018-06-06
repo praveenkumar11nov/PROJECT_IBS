@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+	<persistence-unit name="bfm" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+		<class>com.bcits.bfm.model.AccessCards</class>
+		<class>com.bcits.bfm.model.AccessCardsPermission</class>
+		<class>com.bcits.bfm.model.AccessPoints</class>
+		<class>com.bcits.bfm.model.AccessRepository</class>
+		<class>com.bcits.bfm.model.Account</class>
+		<class>com.bcits.bfm.model.Address</class>
+		<class>com.bcits.bfm.model.AdjustmentCalcLinesEntity</class>
+		<class>com.bcits.bfm.model.AdjustmentComponentsEntity</class>
+		<class>com.bcits.bfm.model.AdvanceBill</class>
+		<class>com.bcits.bfm.model.AdvanceCollectionEntity</class>
+		<class>com.bcits.bfm.model.AdvancePaymentEntity</class>
+		<class>com.bcits.bfm.model.AMRProperty</class>
+		<class>com.bcits.bfm.model.Arms</class>
+		<class>com.bcits.bfm.model.Asset</class>
+		<class>com.bcits.bfm.model.AssetCategory</class>
+		<class>com.bcits.bfm.model.AssetCategoryTree</class>
+		<class>com.bcits.bfm.model.AssetLocation</class>
+		<class>com.bcits.bfm.model.AssetLocationTree</class>
+		<class>com.bcits.bfm.model.AssetMaintenance</class>
+		<class>com.bcits.bfm.model.AssetMaintenanceCost</class>
+		<class>com.bcits.bfm.model.AssetMaintenanceSchedule</class>
+		<class>com.bcits.bfm.model.AssetOwnerShip</class>
+		<class>com.bcits.bfm.model.AssetPhysicalSurvey</class>
+		<class>com.bcits.bfm.model.AssetPhysicalSurveyReport</class>
+		<class>com.bcits.bfm.model.AssetServiceHistory</class>
+		<class>com.bcits.bfm.model.AssetSpares</class>
+		<class>com.bcits.bfm.model.AssetWarranty</class>
+		<class>com.bcits.bfm.model.BankRemittance</class>
+		<class>com.bcits.bfm.model.BankStatement</class>
+		<class>com.bcits.bfm.model.BatchUpdate</class>
+		<class>com.bcits.bfm.model.BillData</class>
+		<class>com.bcits.bfm.model.BillingParameterMaster</class>
+		<class>com.bcits.bfm.model.BillingPaymentsEntity</class>
+		<class>com.bcits.bfm.model.BillingWizardEntity</class>
+		<class>com.bcits.bfm.model.BillParameterMasterEntity</class>
+		<class>com.bcits.bfm.model.Blocks</class>
+		<class>com.bcits.bfm.model.BroadTeleRateMaster</class>
+		<class>com.bcits.bfm.model.BroadTeleRateSlab</class>
+		<class>com.bcits.bfm.model.BroadTeleTariffMaster</class>
+		<class>com.bcits.bfm.model.CamChargesEntity</class>
+		<class>com.bcits.bfm.model.CamConsolidationEntity</class>
+		<class>com.bcits.bfm.model.CamHeadsEntity</class>
+		<class>com.bcits.bfm.model.CamLedgerEntity</class>
+		<class>com.bcits.bfm.model.CamReportSettingsEntity</class>
+		<class>com.bcits.bfm.model.CamSubLedgerEntity</class>
+		<class>com.bcits.bfm.model.CarMake</class>
+		<class>com.bcits.bfm.model.CarModel</class>
+		<class>com.bcits.bfm.model.City</class>
+		<class>com.bcits.bfm.model.ClearedPayments</class>
+		<class>com.bcits.bfm.model.ClubHouse</class>
+		<class>com.bcits.bfm.model.ClubHouseBooking</class>
+		<class>com.bcits.bfm.model.Common</class>
+		<class>com.bcits.bfm.model.CommonServicesRateMaster</class>
+		<class>com.bcits.bfm.model.CommonServicesRateSlab</class>
+		<class>com.bcits.bfm.model.CommonServicesTodRates</class>
+		<class>com.bcits.bfm.model.CommonTariffMaster</class>
+		<class>com.bcits.bfm.model.ConciergeServices</class>
+		<class>com.bcits.bfm.model.ConciergeVendors</class>
+		<class>com.bcits.bfm.model.ConciergeVendorServices</class>
+		<class>com.bcits.bfm.model.ConsolidatedBillsEntity</class>
+		<class>com.bcits.bfm.model.Contact</class>
+		<class>com.bcits.bfm.model.ContractDemand</class>
+		<class>com.bcits.bfm.model.CostCenter</class>
+		<class>com.bcits.bfm.model.Country</class>
+		<class>com.bcits.bfm.model.CsServiceBooking</class>
+		<class>com.bcits.bfm.model.CsVendorCommentsRating</class>
+		<class>com.bcits.bfm.model.CsVendorServiceCharges</class>
+		<class>com.bcits.bfm.model.CustomerCareNotification</class>
+		<class>com.bcits.bfm.model.CustomerEntity</class>
+		<class>com.bcits.bfm.model.CustomerFeedback</class>
+		<class>com.bcits.bfm.model.CustomerItemsEntity</class>
+		<class>com.bcits.bfm.model.CustomerPreviousOrder</class>
+		<class>com.bcits.bfm.model.CustomerTemplate</class>
+		<class>com.bcits.bfm.model.DateAdapter</class>
+		<class>com.bcits.bfm.model.Department</class>
+		<class>com.bcits.bfm.model.Deposits</class>
+		<class>com.bcits.bfm.model.DepositsLineItems</class>
+		<class>com.bcits.bfm.model.DepositsRefundEntity</class>
+		<class>com.bcits.bfm.model.Designation</class>
+		<class>com.bcits.bfm.model.DocumentDefiner</class>
+		<class>com.bcits.bfm.model.DocumentElement</class>
+		<class>com.bcits.bfm.model.DocumentRepository</class>
+		<class>com.bcits.bfm.model.Domestic</class>
+		<class>com.bcits.bfm.model.DomesticProperty</class>
+		<class>com.bcits.bfm.model.DrGroupId</class>
+		<class>com.bcits.bfm.model.ElectricityBillEntity</class>
+		<class>com.bcits.bfm.model.ElectricityBillLineItemEntity</class>
+		<class>com.bcits.bfm.model.ElectricityBillParametersEntity</class>
+		<class>com.bcits.bfm.model.ElectricityLedgerEntity</class>
+		<class>com.bcits.bfm.model.ElectricityMeterLocationEntity</class>
+		<class>com.bcits.bfm.model.ElectricityMeterParametersEntity</class>
+		<class>com.bcits.bfm.model.ElectricityMetersEntity</class>
+		<class>com.bcits.bfm.model.ElectricitySubLedgerEntity</class>
+		<class>com.bcits.bfm.model.ELRateMaster</class>
+		<class>com.bcits.bfm.model.ELRateSlabs</class>
+		<class>com.bcits.bfm.model.ELTariffMaster</class>
+		<class>com.bcits.bfm.model.ELTodRates</class>
+		<class>com.bcits.bfm.model.Family</class>
+		<class>com.bcits.bfm.model.FamilyProperty</class>
+		<class>com.bcits.bfm.model.Faq</class>
+		<class>com.bcits.bfm.model.Feedback</class>
+		<class>com.bcits.bfm.model.FileRepository</class>
+		<class>com.bcits.bfm.model.FileRepositoryTree</class>
+		<class>com.bcits.bfm.model.Form</class>
+		<class>com.bcits.bfm.model.FRChange</class>
+		<class>com.bcits.bfm.model.GasDistributionLosses</class>
+		<class>com.bcits.bfm.model.GasRateMaster</class>
+		<class>com.bcits.bfm.model.GasRateSlab</class>
+		<class>com.bcits.bfm.model.GasTariffMaster</class>
+		<class>com.bcits.bfm.model.GenericBillGeneration</class>
+		<class>com.bcits.bfm.model.GenericClassForCalucaltion</class>
+		<class>com.bcits.bfm.model.GenericClassForTodCalculation</class>
+		<class>com.bcits.bfm.model.GenericParameterForCalculation</class>
+		<class>com.bcits.bfm.model.GraphModelView</class>
+		<class>com.bcits.bfm.model.Groups</class>
+		<class>com.bcits.bfm.model.Handbook</class>
+		<class>com.bcits.bfm.model.HelpDeskSettingsEntity</class>
+		<class>com.bcits.bfm.model.HelpTopicEntity</class>
+		<class>com.bcits.bfm.model.InterestSettingsEntity</class>
+		<class>com.bcits.bfm.model.ItemMaster</class>
+		<class>com.bcits.bfm.model.ItemMasterEntity</class>
+		<class>com.bcits.bfm.model.JcLabourtasks</class>
+		<class>com.bcits.bfm.model.JcMaterials</class>
+		<class>com.bcits.bfm.model.JcNotes</class>
+		<class>com.bcits.bfm.model.JcObjectives</class>
+		<class>com.bcits.bfm.model.JcTeam</class>
+		<class>com.bcits.bfm.model.JcTools</class>
+		<class>com.bcits.bfm.model.JobCalender</class>
+		<class>com.bcits.bfm.model.JobCards</class>
+		<class>com.bcits.bfm.model.JobDocuments</class>
+		<class>com.bcits.bfm.model.JobNotification</class>
+		<class>com.bcits.bfm.model.JobTypes</class>
+		<class>com.bcits.bfm.model.LastSixMonthsBills</class>
+		<class>com.bcits.bfm.model.Ldap</class>
+		<class>com.bcits.bfm.model.Lostandfound</class>
+		<class>com.bcits.bfm.model.MailRoom</class>
+		<class>com.bcits.bfm.model.MaintainanceDepartment</class>
+		<class>com.bcits.bfm.model.MaintainanceTypes</class>
+		<class>com.bcits.bfm.model.Manpower</class>
+		<class>com.bcits.bfm.model.ManPowerApproval</class>
+		<class>com.bcits.bfm.model.ManPowerNotification</class>
+		<class>com.bcits.bfm.model.MedicalEmergencyDisability</class>
+		<class>com.bcits.bfm.model.Messages</class>
+		<class>com.bcits.bfm.model.MeterHistoryEntity</class>
+		<class>com.bcits.bfm.model.MeterParameterMaster</class>
+		<class>com.bcits.bfm.model.MeterReader</class>
+		<class>com.bcits.bfm.model.MeterStatusEntity</class>
+		<class>com.bcits.bfm.model.Module</class>
+		<class>com.bcits.bfm.model.Notification</class>
+		<class>com.bcits.bfm.model.OpenNewTicketEntity</class>
+		<class>com.bcits.bfm.model.OTConsumptions</class>
+		<class>com.bcits.bfm.model.OtherInstallation</class>
+		<class>com.bcits.bfm.model.Owner</class>
+		<class>com.bcits.bfm.model.OwnerAuditTrail</class>
+		<class>com.bcits.bfm.model.OwnerProperty</class>
+		<class>com.bcits.bfm.model.ParkingSlots</class>
+		<class>com.bcits.bfm.model.ParkingSlotsAllotment</class>
+		<class>com.bcits.bfm.model.PasswordGenerator</class>
+		<class>com.bcits.bfm.model.PatrolSettings</class>
+		<class>com.bcits.bfm.model.PatrolTrackAlert</class>
+		<class>com.bcits.bfm.model.PatrolTrackPoints</class>
+		<class>com.bcits.bfm.model.PatrolTracks</class>
+		<class>com.bcits.bfm.model.PatrolTrackStaff</class>
+		<class>com.bcits.bfm.model.PaymentAdjustmentControlEntity</class>
+		<class>com.bcits.bfm.model.PaymentAdjustmentEntity</class>
+		<class>com.bcits.bfm.model.PaymentSegmentCalcLines</class>
+		<class>com.bcits.bfm.model.PaymentSegmentsEntity</class>
+		<class>com.bcits.bfm.model.Permission</class>
+		<class>com.bcits.bfm.model.Person</class>
+		<class>com.bcits.bfm.model.PersonAccessCards</class>
+		<class>com.bcits.bfm.model.Pets</class>
+		<class>com.bcits.bfm.model.Pinstatus</class>
+		<class>com.bcits.bfm.model.PreRegisteredVisitors</class>
+		<class>com.bcits.bfm.model.Product</class>
+		<class>com.bcits.bfm.model.Project</class>
+		<class>com.bcits.bfm.model.ProjectLocation</class>
+		<class>com.bcits.bfm.model.Property</class>
+		<class>com.bcits.bfm.model.Requisition</class>
+		<class>com.bcits.bfm.model.RequisitionDetails</class>
+		<class>com.bcits.bfm.model.Role</class>
+		<class>com.bcits.bfm.model.ServiceAccountEntity</class>
+		<class>com.bcits.bfm.model.ServiceBooking</class>
+		<class>com.bcits.bfm.model.ServiceMastersEntity</class>
+		<class>com.bcits.bfm.model.ServiceParameterMaster</class>
+		<class>com.bcits.bfm.model.ServiceParametersEntity</class>
+		<class>com.bcits.bfm.model.ServicePointEntity</class>
+		<class>com.bcits.bfm.model.ServicePointEquipmentsEntity</class>
+		<class>com.bcits.bfm.model.ServicePointInstructionsEntity</class>
+		<class>com.bcits.bfm.model.ServiceRoute</class>
+		<class>com.bcits.bfm.model.SlabDetails</class>
+		<class>com.bcits.bfm.model.SolidWasteRateMaster</class>
+		<class>com.bcits.bfm.model.SolidWasteRateSlab</class>
+		<class>com.bcits.bfm.model.SolidWasteTariffMaster</class>
+		<class>com.bcits.bfm.model.StaffAttendanceGateOutAlert</class>
+		<class>com.bcits.bfm.model.StaffAttendanceSummary</class>
+		<class>com.bcits.bfm.model.StaffExperience</class>
+		<class>com.bcits.bfm.model.StaffNotices</class>
+		<class>com.bcits.bfm.model.StaffTraining</class>
+		<class>com.bcits.bfm.model.State</class>
+		<class>com.bcits.bfm.model.StoreAdjustments</class>
+		<class>com.bcits.bfm.model.StoreCategory</class>
+		<class>com.bcits.bfm.model.StoreGoodsReceipt</class>
+		<class>com.bcits.bfm.model.StoreGoodsReceiptItems</class>
+		<class>com.bcits.bfm.model.StoreGoodsReturns</class>
+		<class>com.bcits.bfm.model.StoreIssue</class>
+		<class>com.bcits.bfm.model.StoreItemLedger</class>
+		<class>com.bcits.bfm.model.StoreItemLedgerDetails</class>
+		<class>com.bcits.bfm.model.StoreMaster</class>
+		<class>com.bcits.bfm.model.StoreMasterEntity</class>
+		<class>com.bcits.bfm.model.StoreMovement</class>
+		<class>com.bcits.bfm.model.StoreOutward</class>
+		<class>com.bcits.bfm.model.StorePhysicalInventory</class>
+		<class>com.bcits.bfm.model.StorePhysicalInventoryReport</class>
+		<class>com.bcits.bfm.model.Tasks</class>
+		<class>com.bcits.bfm.model.Tenant</class>
+		<class>com.bcits.bfm.model.TenantProperty</class>
+		<class>com.bcits.bfm.model.TicketAssignEntity</class>
+		<class>com.bcits.bfm.model.TicketDeptTransferEntity</class>
+		<class>com.bcits.bfm.model.TicketPostInternalNoteEntity</class>
+		<class>com.bcits.bfm.model.TicketPostReplyEntity</class>
+		<class>com.bcits.bfm.model.ToolMaster</class>
+		<class>com.bcits.bfm.model.TransactionMasterEntity</class>
+		<class>com.bcits.bfm.model.TreeViewItem</class>
+		<class>com.bcits.bfm.model.UnitOfMeasurement</class>
+		<class>com.bcits.bfm.model.UserGroup</class>
+		<class>com.bcits.bfm.model.UserLog</class>
+		<class>com.bcits.bfm.model.UserRole</class>
+		<class>com.bcits.bfm.model.Users</class>
+		<class>com.bcits.bfm.model.Vehicles</class>
+		<class>com.bcits.bfm.model.VendorContractLineitems</class>
+		<class>com.bcits.bfm.model.VendorContracts</class>
+		<class>com.bcits.bfm.model.VendorIncidents</class>
+		<class>com.bcits.bfm.model.VendorInvoices</class>
+		<class>com.bcits.bfm.model.VendorLineItems</class>
+		<class>com.bcits.bfm.model.VendorPayments</class>
+		<class>com.bcits.bfm.model.VendorPriceList</class>
+		<class>com.bcits.bfm.model.VendorRequests</class>
+		<class>com.bcits.bfm.model.Vendors</class>
+		<class>com.bcits.bfm.model.Visitor</class>
+		<class>com.bcits.bfm.model.VisitorParking</class>
+		<class>com.bcits.bfm.model.VisitorVisits</class>
+		<class>com.bcits.bfm.model.WrongParking</class>
+		<class>com.bcits.bfm.model.WTRateMaster</class>
+		<class>com.bcits.bfm.model.WTRateSlabs</class>
+		<class>com.bcits.bfm.model.WTTariffMaster</class>
+		<class>com.bcits.bfm.model.BillingConfiguration</class>
+		<class>com.bcits.bfm.patternMasterEntity.PettyTransactionManager</class>
+		<class>com.bcits.bfm.patternMasterEntity.ProcessMaster</class>
+		<class>com.bcits.bfm.patternMasterEntity.TransactionDetail</class>
+		<class>com.bcits.bfm.patternMasterEntity.TransactionMaster</class>
+		<class>com.bcits.bfm.calender.Task</class>
+         <class>com.bcits.bfm.model.BillDocument</class>
+         <class>com.bcits.bfm.model.BMSSettingsEntity</class>
+         <class>com.bcits.bfm.model.BMSNotificationEntity</class>
+         <class>com.bcits.bfm.model.ChequeBounceEntity</class>
+         <class>com.bcits.bfm.model.OnlinePaymentTransactions</class>
+         <class>com.bcits.bfm.model.LedgerViewEntity</class>         
+		<class>com.bcits.bfm.model.AMRDataEntity</class>
+		 <class>com.bcits.bfm.model.AdjustmentMasterEntity</class>
+		 <class>com.bcits.bfm.model.AboutUs</class>
+		 <class>com.bcits.bfm.model.FeedbackMaster</class>
+		 <class>com.bcits.bfm.model.FeedbackChild</class>
+         <class>com.bcits.bfm.model.MailMaster</class>
+         <class>com.bcits.bfm.model.BankTransactionHistory</class>
+         
+         <class>com.bcits.bfm.model.PrePaidGenusBilldata</class>
+         <class>com.bcits.bfm.model.PrepaidRechargeEntity</class>
+         <class>com.bcits.bfm.model.PrePaidMeters</class>
+         <class>com.bcits.bfm.model.PrePaidDailyData</class>
+         <class>com.bcits.bfm.model.SmsEmailForLowBal</class>
+         <class>com.bcits.bfm.model.PrePaidPaymentEntity</class>
+         
+         <class>com.bcits.bfm.model.Classified</class>
+         <class>com.bcits.bfm.model.ClassifiedEntity</class>
+         <class>com.bcits.bfm.model.BillingAndPaymentHelpDesk</class>
+         <class>com.bcits.bfm.model.PrepaidTxnChargesEntity</class>
+         <class>com.bcits.bfm.model.PrepaidServiceMaster</class>
+         <class>com.bcits.bfm.model.PrepaidCalculationBasisEntity</class>
+         <class>com.bcits.bfm.model.PrepaidCalcuStoreEntity</class>
+         <class>com.bcits.bfm.model.PrepaidBillDocument</class>
+         <class>com.bcits.bfm.model.PrepaidBillDetails</class>
+         <class>com.bcits.bfm.model.OldMeterHistoryEntity</class>
+         <class>com.bcits.bfm.model.GenusMtrNoNotGetting</class>
+         
+         <class>com.bcits.bfm.model.BatchBillsEntity</class>
+         <class>com.bcits.bfm.model.PostLedgerEntity</class>
+         <class>com.bcits.bfm.model.BillDocEntity</class>
+         
+			         
+         
+         
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<!--DB configuration for Oracle -->
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="none" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider" />
+			<property name="hibernate.jdbc.batch_size" value="20"/>
+			
+			<property name="hibernate.cache.use_query_cache" value="true"/>
+			<property name="hibernate.cache.use_second_level_cache" value="true"/>
+			
+			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.2.96:1521:ORCL" />
+   			<!-- <property name="javax.persistence.jdbc.user" value="IREO_2" />
+  	    	<property name="javax.persistence.jdbc.password" value="bcits123" /> -->
+  	    	
+  	    	<property name="javax.persistence.jdbc.user" value="IRE0_SKYON" />
+  	    	<property name="javax.persistence.jdbc.password" value="skyon123" />
+		
+			
+		</properties>
+	</persistence-unit>
+	
+	<persistence-unit name="MSSQLDataSource" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+		<class>com.bcits.bfm.model.Tower_A_EB_kwh</class>
+		<class>com.bcits.bfm.model.Tower_H_EB_kwh</class>
+		<class>com.bcits.bfm.model.Tower_G_EB_kwh</class>
+		<class>com.bcits.bfm.model.Tower_C_EB_kwh</class>
+		<class>com.bcits.bfm.model.Tower_B_EB_kwh</class>
+		<class>com.bcits.bfm.model.Tower_A_DG_kwh</class>
+		<class>com.bcits.bfm.model.Tower_H_DG_kwh</class>
+		<class>com.bcits.bfm.model.Tower_G_DG_kwh</class>
+		<class>com.bcits.bfm.model.Tower_C_DG_kwh</class>
+		<class>com.bcits.bfm.model.Tower_B_DG_kwh</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<!--DB configuration for Oracle -->
+		<properties>
+			
+  	    	<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="none" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider" />
+			<property name="hibernate.jdbc.batch_size" value="20"/>
+			
+			<property name="hibernate.cache.use_query_cache" value="true"/>
+			<property name="hibernate.cache.use_second_level_cache" value="true"/>
+			
+			
+  	    	
+		</properties>
+	</persistence-unit>
+	
+		<persistence-unit name="MSSQLDataSourceAccessCards" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+		<class>com.bcits.bfm.model.Personnel</class>
+		<class>com.bcits.bfm.model.Area</class>
+		<class>com.bcits.bfm.model.AccessEvent</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        
+        
+        <properties>
+			
+  	    	<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="none" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider" />
+			<property name="hibernate.jdbc.batch_size" value="20"/>
+	
+			<property name="hibernate.cache.use_query_cache" value="true"/>
+			<property name="hibernate.cache.use_second_level_cache" value="true"/>
+		
+			<!-- <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://125.17.183.186\\ContinuumDB:1434;" />
+   			<property name="javax.persistence.jdbc.user" value="gaacs" />
+  	    	<property name="javax.persistence.jdbc.password" value="welcome" /> -->
+		
+		</properties>
+    </persistence-unit>
+    
+    <persistence-unit name="BMS" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>com.bcits.bfm.model.TrendLog</class>
+		<class>com.bcits.bfm.model.TrendLogValue</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        
+		
+		<properties>
+  	    	<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="none" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider" />
+			<property name="hibernate.jdbc.batch_size" value="20"/>
+			<property name="hibernate.cache.use_query_cache" value="true"/>
+			<property name="hibernate.cache.use_second_level_cache" value="true"/>
+			
+			<!-- <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://192.168.2.92\\bsw:1433;" />
+   			<property name="javax.persistence.jdbc.user" value="sa" />
+  	    	<property name="javax.persistence.jdbc.password" value="bcits@123" /> -->
+		</properties>
+	</persistence-unit> 
+
+</persistence>

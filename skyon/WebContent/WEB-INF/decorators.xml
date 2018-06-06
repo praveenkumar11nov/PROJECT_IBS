@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<decorators defaultdir="/WEB-INF/decorators">
+	<!-- <excludes>
+		<pattern>/login**</pattern>
+	</excludes> -->
+
+	<decorator name="login" page="loginlayout.jsp">
+		<pattern>/login**</pattern>
+	</decorator>
+	
+	<decorator name="recoverPassword" page="loginlayout.jsp">
+		<pattern>/recoverPassword</pattern>
+	</decorator>
+	
+	<decorator name="loginpage" page="loginlayout.jsp">
+		<pattern>/</pattern>
+	</decorator>
+	
+	<decorator name="logout" page="loginlayout.jsp">
+		<pattern>/logout**</pattern>
+	</decorator>
+	
+	<decorator name="myprofile" page="profilelayout.jsp">
+		<pattern>/myprofile**</pattern>
+	</decorator>
+	
+	<decorator name="changepassword" page="profilelayout.jsp">
+		<pattern>/changePassword**</pattern>
+	</decorator>
+	
+	<decorator name="updatePassword" page="profilelayout.jsp">
+		<pattern>/updatePassword**</pattern>
+	</decorator>
+	
+	<decorator name="trash" page="profilelayout.jsp">
+		<pattern>/trash</pattern>
+	</decorator>
+	
+	<decorator name="inbox" page="profilelayout.jsp">
+		<pattern>/inbox</pattern>
+	</decorator>
+	
+	<decorator name="sent" page="profilelayout.jsp">
+		<pattern>/sent</pattern>
+	</decorator>
+	
+	<decorator name="drafts" page="profilelayout.jsp">
+		<pattern>/drafts</pattern>
+	</decorator>
+	
+	<!-- <decorator name="test" page="testLayout.jsp">
+		<pattern>/role</pattern>
+	</decorator> -->
+	
+	<decorator name="default" page="singleColumnLayout.jsp">
+		<pattern>/**</pattern>
+	</decorator>
+	
+	
+</decorators>
+

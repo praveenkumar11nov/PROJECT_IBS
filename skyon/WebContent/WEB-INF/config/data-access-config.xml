@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:encryption="http://www.jasypt.org/schema/encryption"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.jasypt.org/schema/encryption http://www.jasypt.org/schema/encryption/jasypt-spring3-encryption-1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	
+	
+	 <tx:annotation-driven /> 
+
+	<!-- Drives transactions using local JPA APIs -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	<bean id="transactionManagerMSSQL" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactoryMSSQL" />
+	</bean>
+	<bean id="transactionManagerMSSQLAccessCards" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactoryMSSQLAccessCards"/>
+	</bean>
+	<bean id="transactionManagerBMS" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactoryBMS" />
+	</bean>
+
+
+	<!-- Creates a EntityManagerFactory for use with the Hibernate JPA provider 
+		and a simple in-memory data source populated with test data -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="persistenceUnitName" value="bfm" />
+		<property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml"/>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+	</bean>	
+	
+	
+	
+	<bean id="entityManagerFactoryMSSQL"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSourceMSSQL" />
+		<property name="persistenceUnitName" value="MSSQLDataSource" />
+		<property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml"/>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+	</bean>	
+	
+	<bean id="entityManagerFactoryMSSQLAccessCards"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSourceMSSQLAccessCards" />
+		<property name="persistenceUnitName" value="MSSQLDataSourceAccessCards" />
+		<property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml"/>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+	</bean>
+	<bean id="entityManagerFactoryBMS"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSourceBMS" />
+		<property name="persistenceUnitName" value="BMS" />
+		<property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml"/>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+	</bean>		
+	
+	
+	<!-- JBOSS -->
+	<bean id="propertyConfigurer"	class="org.jasypt.spring.properties.EncryptablePropertyPlaceholderConfigurer">
+		<constructor-arg ref="configurationEncryptor" />
+		<!-- <property name="location" value="classpath:configuration.properties" />
+		<property name="placeholderPrefix" value="${" /> -->
+		
+		
+		<property name="locations">
+            <list>
+                <value>classpath:configuration.properties</value>
+                <value>classpath:schedularconfig.properties</value>
+            </list>
+        </property>
+		<property name="placeholderPrefix" value="${" />
+		<property name="ignoreResourceNotFound" value="false" />
+	</bean>
+	
+	
+
+
+
+	<bean id="configurationEncryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
+		<property name="config" ref="environmentVariablesConfiguration" />
+	</bean>
+
+	<bean id="environmentVariablesConfiguration"
+		class="org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig">
+		<property name="algorithm" value="PBEWithMD5AndDES" />
+		<property name="password" value="bcits" />
+	</bean>
+	
+	<bean id="contextSource"
+		class="org.springframework.security.ldap.DefaultSpringSecurityContextSource"
+		depends-on="propertyConfigurer">
+		<constructor-arg value="${Unique.ldap.url}" />
+		<property name="userDn" value="${Unique.ldap.loginDN}" />
+		<property name="password" value="${Unique.ldap.password}" />
+	</bean>	
+		
+		
+	<!-- Declare a datasource that has C3po connection pooling capabilities--> 
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${datasource.driverClassName}" />
+		<property name="jdbcUrl" value="${datasource.url}" />
+		<property name="user" value="${datasource.username}" />
+		<property name="password" value="${datasource.password}" />
+	
+		<!-- these are C3P0 properties -->
+		<!--
+		<property name="acquireIncrement" value="5" />
+		<property name="maxIdleTime" value="300" />
+		<property name="maxPoolSize" value="100" />
+		<property name="minPoolSize" value="10" />
+		<property name="maxStatements" value="300" />
+		--> 
+		
+		<property name="acquireIncrement" value="1" />
+		<property name="acquireRetryAttempts" value="1" />
+		<property name="maxIdleTime" value="300" />
+		<property name="maxPoolSize" value="20" />
+		<property name="minPoolSize" value="3" />
+		<property name="maxStatements" value="300" />
+		<property name="testConnectionOnCheckin" value="true" />	
+		
+	</bean>
+	
+		<bean id="dataSourceMSSQL" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${datasource1.driverClassName}" />
+		<property name="jdbcUrl" value="${datasource1.url}" />
+		<property name="user" value="${datasource1.username}" />
+		<property name="password" value="${datasource1.password}" />
+	
+		<!-- these are C3P0 properties -->
+		<!--
+		<property name="acquireIncrement" value="5" />
+		<property name="maxIdleTime" value="300" />
+		<property name="maxPoolSize" value="100" />
+		<property name="minPoolSize" value="10" />
+		<property name="maxStatements" value="300" />
+		--> 
+		
+		<property name="acquireIncrement" value="1" />
+		<property name="acquireRetryAttempts" value="1" />
+		<property name="maxIdleTime" value="300" />
+		<property name="maxPoolSize" value="20" />
+		<property name="minPoolSize" value="3" />
+		<property name="maxStatements" value="300" />
+		<property name="testConnectionOnCheckin" value="true" />	
+		
+	</bean>
+	
+	<bean id="dataSourceMSSQLAccessCards" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${datasource2.driverClassName}" />
+		<property name="jdbcUrl" value="${datasource2.url}" />
+		<property name="user" value="${datasource2.username}" />
+		<property name="password" value="${datasource2.password}" />
+	
+		
+		
+		<property name="acquireIncrement" value="1" />
+		<property name="acquireRetryAttempts" value="1" />
+		<property name="maxIdleTime" value="300" />
+		<property name="maxPoolSize" value="20" />
+		<property name="minPoolSize" value="3" />
+		<property name="maxStatements" value="300" />
+		<property name="testConnectionOnCheckin" value="true" />	
+		
+	</bean>
+	
+	<bean id="dataSourceBMS" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${datasourceBMS.driverClassName}" />
+		<property name="jdbcUrl" value="${datasourceBMS.url}" />
+		<property name="user" value="${datasourceBMS.username}" />
+		<property name="password" value="${datasourceBMS.password}" />
+		<property name="acquireIncrement" value="1" />
+		<property name="acquireRetryAttempts" value="1" />
+		<property name="maxIdleTime" value="300" />
+		<property name="maxPoolSize" value="20" />
+		<property name="minPoolSize" value="3" />
+		<property name="maxStatements" value="300" />
+		<property name="testConnectionOnCheckin" value="true" />	
+		
+	</bean>
+	
+</beans>
